@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HL7 De-identification Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px 0;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+        }
+        .error {
+            color: red;
+            background-color: #ffe6e6;
+            padding: 10px;
+            border: 1px solid #ff9999;
+        }
+    </style>
+</head>
+<body>
+    <h1>HL7 De-identification Example</h1>
+    <p>This example demonstrates the HL7 de-identification library in a browser environment.</p>
+    
+    <h2>Input HL7 Message</h2>
+    <textarea id="inputMessage" placeholder="Paste your HL7 message here...">MSH|^~\&|SendingApp|SendingFacility|ReceivingApp|ReceivingFacility|20240101120000||ADT^A01^ADT_A01|12345|P|2.5
+PID|1||MRN123456789^^^HOSPITAL^MR||DOE^JOHN^MIDDLE^JR^^L||19800115|M|||123 MAIN ST^^CITY^ST^12345^USA||555-123-4567^PH|||123-45-6789</textarea>
+    
+    <button onclick="deidentify()">De-identify Message</button>
+    <button onclick="loadSample()">Load Sample Message</button>
+    
+    <div id="output"></div>
+
+    <script type="module">
+        // Import the de-identification functions
+        // Note: In a real browser environment, you would need to serve this as a module
+        // or bundle it. For this example, we'll assume the module is available.
+        
+        // For demonstration, we'll use a simplified inline version
+        // In production, use: import { deidentifyHL7Message, validateHL7Message, getSampleADTMessage } from './src/hl7DeidentificationService.js';
+        
+        window.deidentify = async function() {
+            const input = document.getElementById('inputMessage').value;
+            const outputDiv = document.getElementById('output');
+            
+            try {
+                // In a real implementation, you would import the module:
+                // const { deidentifyHL7Message, validateHL7Message } = await import('./src/hl7DeidentificationService.js');
+                
+                // For this example, we'll show the structure:
+                outputDiv.innerHTML = `
+                    <div class="error">
+                        <strong>Note:</strong> This is a demonstration HTML file. 
+                        To use in a browser, you need to either:<br>
+                        1. Use a bundler (Webpack, Rollup, etc.) to bundle the ES6 module<br>
+                        2. Use a module loader that supports ES6 modules<br>
+                        3. Convert the module to a UMD format for direct script inclusion
+                    </div>
+                    <p>To use this library in a browser:</p>
+                    <ol>
+                        <li>Use a bundler like Webpack or Rollup to bundle the ES6 module</li>
+                        <li>Or use a module loader that supports ES6 modules</li>
+                        <li>Or convert to UMD format for direct &lt;script&gt; tag inclusion</li>
+                    </ol>
+                    <p>See the README.md for more details on browser usage.</p>
+                `;
+            } catch (error) {
+                outputDiv.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+            }
+        };
+        
+        window.loadSample = async function() {
+            try {
+                // In a real implementation:
+                // const { getSampleADTMessage } = await import('./src/hl7DeidentificationService.js');
+                // document.getElementById('inputMessage').value = getSampleADTMessage();
+                
+                document.getElementById('inputMessage').value = `MSH|^~\\&|SendingApp|SendingFacility|ReceivingApp|ReceivingFacility|20240101120000||ADT^A01^ADT_A01|12345|P|2.5
+EVN|A01|20240101120000|20240101120000|EVENT_FACILITY|OPERATOR^JOHN^DOE^MD
+PID|1||MRN123456789^^^HOSPITAL^MR||DOE^JOHN^MIDDLE^JR^^L||19800115|M|||123 MAIN ST^^CITY^ST^12345^USA||555-123-4567^PH^555-987-6543^CP|||123-45-6789||DL123456789^CA^20250101|SMITH^MARY|||BIRTHPLACE^CITY^CA^90210^USA`;
+            } catch (error) {
+                alert('Error loading sample: ' + error.message);
+            }
+        };
+    </script>
+</body>
+</html>

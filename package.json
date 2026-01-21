@@ -1,0 +1,35 @@
+{
+  "name": "hl7-deidentification",
+  "version": "1.0.0",
+  "description": "A comprehensive JavaScript library for de-identifying HL7 messages according to HIPAA Safe Harbor standards",
+  "main": "src/hl7DeidentificationService.js",
+  "type": "module",
+  "scripts": {
+    "test": "node example.js"
+  },
+  "keywords": [
+    "hl7",
+    "deidentification",
+    "de-identification",
+    "hipaa",
+    "phi",
+    "protected-health-information",
+    "safe-harbor",
+    "healthcare",
+    "medical-records"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/hl7-deidentification.git"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "files": [
+    "src/",
+    "README.md",
+    "LICENSE"
+  ]
+}
